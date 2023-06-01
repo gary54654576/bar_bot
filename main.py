@@ -12,6 +12,8 @@ from menu_utils import get_dish_data_by_title_and_language
 from menu_utils import get_message_by_key_and_language
 from menu_utils import get_all_c_and_s
 
+print('Start Bot')
+
 bot = telebot.TeleBot('6045619495:AAFVbJgIXMydfgp6ZnHCRiACcNGrIhzONYs')
 @bot.message_handler(commands=['start', '↩️'])
 def start(message):
@@ -143,6 +145,7 @@ def select_c_and_s(message):
     bot.send_message(message.chat.id, text, reply_markup=markup)
     print('finish def "select_c_and_s"')
 
-
+    
+print('Finish bot')
 bot.polling(none_stop=True)
 
