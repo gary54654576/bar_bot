@@ -5,11 +5,11 @@ from menu_utils import get_all_languages
 # from menu_utils import get_all_titles
 # from menu_utils import get_all_category_names
 # from menu_utils import get_category_names_by_language
-# from menu_utils import get_action_names_by_language
+from menu_utils import get_action_names_by_language
 # from menu_utils import get_all_action_names
 # from menu_utils import get_dishes_titles_by_category_and_language
 # from menu_utils import get_dish_data_by_title_and_language
-# from menu_utils import get_message_by_key_and_language
+from menu_utils import get_message_by_key_and_language
 # from menu_utils import get_all_c_and_s
 
 bot = telebot.TeleBot('6045619495:AAFVbJgIXMydfgp6ZnHCRiACcNGrIhzONYs')
@@ -23,28 +23,28 @@ def start(message):
     bot.send_message(message.chat.id, 'Choose language', reply_markup=markup)
     print('finish def "start"')
 
-# @bot.message_handler(func=lambda message: message.text in get_all_languages())
-# def select_language(message):
-#     print('start def "select_language"')
-#     global select_language_message
-#     select_language_message = message
-#     global selected_language
-#     selected_language = message.text
-#
-#     action_names = get_action_names_by_language(selected_language)
-#
-#     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-#
-#     for action in action_names:
-#         markup.add(types.KeyboardButton(action))
-#     markup.add(types.KeyboardButton('/↩️'))
-#
-#     text = get_message_by_key_and_language('сhoose_action', selected_language)
-#     bot.send_message(message.chat.id, text, reply_markup=markup)
-#     print('finish def "select_language"')
-#
-#
-#
+@bot.message_handler(func=lambda message: message.text in get_all_languages())
+def select_language(message):
+    print('start def "select_language"')
+    global select_language_message
+    select_language_message = message
+    global selected_language
+    selected_language = message.text
+
+    action_names = get_action_names_by_language(selected_language)
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+
+    for action in action_names:
+        markup.add(types.KeyboardButton(action))
+    markup.add(types.KeyboardButton('/↩️'))
+
+    text = get_message_by_key_and_language('сhoose_action', selected_language)
+    bot.send_message(message.chat.id, text, reply_markup=markup)
+    print('finish def "select_language"')
+
+
+
 # @bot.message_handler(func=lambda message: message.text in get_all_action_names() or message.text == '↩️')
 # def select_action(message):
 #     print('start def "select_action"')
