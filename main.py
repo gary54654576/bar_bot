@@ -2,15 +2,15 @@ from telebot import types
 import telebot
 
 from menu_utils import get_all_languages
-from menu_utils import get_all_titles
-from menu_utils import get_all_category_names
-from menu_utils import get_category_names_by_language
-from menu_utils import get_action_names_by_language
-from menu_utils import get_all_action_names
-from menu_utils import get_dishes_titles_by_category_and_language
-from menu_utils import get_dish_data_by_title_and_language
-from menu_utils import get_message_by_key_and_language
-from menu_utils import get_all_c_and_s
+# from menu_utils import get_all_titles
+# from menu_utils import get_all_category_names
+# from menu_utils import get_category_names_by_language
+# from menu_utils import get_action_names_by_language
+# from menu_utils import get_all_action_names
+# from menu_utils import get_dishes_titles_by_category_and_language
+# from menu_utils import get_dish_data_by_title_and_language
+# from menu_utils import get_message_by_key_and_language
+# from menu_utils import get_all_c_and_s
 
 bot = telebot.TeleBot('6045619495:AAFVbJgIXMydfgp6ZnHCRiACcNGrIhzONYs')
 @bot.message_handler(commands=['start', '↩️'])
