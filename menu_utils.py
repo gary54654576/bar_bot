@@ -1,6 +1,9 @@
-from importlib import reload
 import google_sheet_service
-reload(google_sheet_service)
+from importlib import reload  # Добавлено для перезагрузки модуля
+import sys
+
+# Перезагрузка модуля google_sheet_service
+reload(sys.modules['google_sheet_service'])
 
 languages = google_sheet_service.get_languages()
 messages = google_sheet_service.get_messages()
