@@ -1,16 +1,14 @@
 import google_sheet_service
 
-
 languages = google_sheet_service.get_languages()
 messages = google_sheet_service.get_messages()
 categories = google_sheet_service.get_menu_categories()
-category_button_names = google_sheet_service.get_menu_category_button_names()
-action_buttons = google_sheet_service.get_action_button_names()
-c_and_s = google_sheet_service.get_c_and_s()
 common_data = google_sheet_service.get_common_data()
 titles = google_sheet_service.get_titles()
 descriptions = google_sheet_service.get_descriptions()
-
+category_button_names = google_sheet_service.get_menu_category_button_names()
+action_buttons = google_sheet_service.get_action_button_names()
+c_and_s = google_sheet_service.get_c_and_s()
 
 # -------------------------------------------------------------
 # Импортируемые функции
