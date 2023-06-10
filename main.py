@@ -5,6 +5,9 @@ import sys
 
 from telebot import types
 
+# Перезагрузка модуля menu_utils
+reload(sys.modules['menu_utils'])
+
 bot = telebot.TeleBot('6045619495:AAFVbJgIXMydfgp6ZnHCRiACcNGrIhzONYs')
 
 @bot.message_handler(commands=['start', '↩️'])
