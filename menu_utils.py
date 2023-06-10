@@ -1,4 +1,5 @@
 import google_sheet_service
+import google_drive_service
 from importlib import reload  # Добавлено для перезагрузки модуля
 import sys
 
@@ -53,7 +54,7 @@ def get_dish_data_by_title_and_language(dish_name, language):
             message_text += f'<b>{item["price"]}</b>\n'
             image_id = item["image_id"]
             if image_id != '' and image_id != None:
-                image_file = google_sheet_service.get_file_by_id(image_id)
+                image_file = google_drive_service.get_file_by_id(image_id)
                 dish_data = {
                     'text': message_text,
                     'image': image_file

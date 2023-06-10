@@ -65,3 +65,17 @@ def get_menu_category_button_names():
     result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID, range=BUTTONS_RANGE).execute()
     buttons = result.get('values', [])
     return buttons
+
+def get_action_button_names():
+    BUTTONS_RANGE = 'action buttons!A2:D'
+    service = get_drive_service()
+    result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID, range=BUTTONS_RANGE).execute()
+    buttons = result.get('values', [])
+    return buttons
+
+def get_c_and_s():
+    BUTTONS_RANGE = 'action buttons!A3:D'
+    service = get_drive_service()
+    result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID, range=BUTTONS_RANGE).execute()
+    buttons = result.get('values', [])
+    return buttons[0]
