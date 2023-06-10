@@ -1,23 +1,15 @@
-from google_sheet_service import get_languages
-from google_sheet_service import get_messages
-from google_sheet_service import get_menu_categories
-from google_sheet_service import get_common_data
-from google_sheet_service import get_titles
-from google_sheet_service import get_descriptions
-from google_drive_service import get_file_by_id
-from google_sheet_service import get_menu_category_button_names
-from google_sheet_service import get_action_button_names
-from google_sheet_service import get_c_and_s
+import google_sheet_service
 
-languages = get_languages()
-messages = get_messages()
-categories = get_menu_categories()
-category_button_names = get_menu_category_button_names()
-action_buttons = get_action_button_names()
-c_and_s = get_c_and_s()
-common_data = get_common_data()
-titles = get_titles()
-descriptions = get_descriptions()
+
+languages = google_sheet_service.get_languages()
+messages = google_sheet_service.get_messages()
+categories = google_sheet_service.get_menu_categories()
+category_button_names = google_sheet_service.get_menu_category_button_names()
+action_buttons = google_sheet_service.get_action_button_names()
+c_and_s = google_sheet_service.get_c_and_s()
+common_data = google_sheet_service.get_common_data()
+titles = google_sheet_service.get_titles()
+descriptions = google_sheet_service.get_descriptions()
 
 
 # -------------------------------------------------------------
@@ -58,7 +50,7 @@ def get_dish_data_by_title_and_language(dish_name, language):
             message_text += f'<b>{item["price"]}</b>\n'
             image_id = item["image_id"]
             if image_id != '' and image_id != None:
-                image_file = get_file_by_id(image_id)
+                image_file = google_sheet_service.get_file_by_id(image_id)
                 dish_data = {
                     'text': message_text,
                     'image': image_file
