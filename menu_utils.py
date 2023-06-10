@@ -1,4 +1,6 @@
+from importlib import reload
 import google_sheet_service
+reload(google_sheet_service)
 
 languages = google_sheet_service.get_languages()
 messages = google_sheet_service.get_messages()
