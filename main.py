@@ -13,11 +13,13 @@ bot = telebot.TeleBot('6045619495:AAFVbJgIXMydfgp6ZnHCRiACcNGrIhzONYs')
 @bot.message_handler(commands=['start', '↩️'])
 def start(message):
     print('start def "start"')
+    global user_id
+    user_id = message.chat.id
     languages = menu_utils.get_all_languages()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     for language in languages:
         markup.add(types.KeyboardButton(language))
-    bot.send_message(message.chat.id, 'Choose language', reply_markup=markup)
+    bot.send_message(user_id, 'Choose language', reply_markup=markup)
     print('finish def "start"')
 
 @bot.message_handler(func=lambda message: message.text in menu_utils.get_all_languages())
@@ -33,7 +35,7 @@ def select_language(message):
         markup.add(types.KeyboardButton(action))
     markup.add(types.KeyboardButton('/↩️'))
     text = menu_utils.get_message_by_key_and_language('сhoose_action', selected_language)
-    bot.send_message(message.chat.id, text, reply_markup=markup)
+    bot.send_message(user_id, text, reply_markup=markup)
     print('finish def "select_language"')
 
 @bot.message_handler(func=lambda message: message.text in menu_utils.get_all_action_names() or message.text == '↩️')
@@ -47,7 +49,7 @@ def select_action(message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         markup.add(types.KeyboardButton('↩'))
         text = menu_utils.get_message_by_key_and_language('write_complaint', selected_language)
-        bot.send_message(message.chat.id, text, reply_markup=markup)
+        bot.send_message(user_id, text, reply_markup=markup)
         return
     category_names = menu_utils.get_category_names_by_language(selected_language)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -55,7 +57,7 @@ def select_action(message):
         markup.add(types.KeyboardButton(category))
     markup.add(types.KeyboardButton('↪️'))
     text = menu_utils.get_message_by_key_and_language('сhoose_category', selected_language)
-    bot.send_message(message.chat.id, text, reply_markup=markup)
+    bot.send_message(user_id, text, reply_markup=markup)
     print('finish def "select_action"')
 
 @bot.message_handler(func=lambda message: message.text in menu_utils.get_all_category_names() or message.text == '↪️')
@@ -73,7 +75,7 @@ def select_category(message):
         markup.add(types.KeyboardButton(text))
     markup.add(types.KeyboardButton('↩️'))
     text = menu_utils.get_message_by_key_and_language('choose_dish', selected_language)
-    bot.send_message(message.chat.id, text, reply_markup=markup)
+    bot.send_message(user_id, text, reply_markup=markup)
     print('finish def "select_category"')
 
 @bot.message_handler(func=lambda message: message.text in menu_utils.get_all_titles() or message.text == '↩️')
@@ -87,9 +89,9 @@ def select_title(message):
     text = dish_data['text']
     image = dish_data['image']
     if image:
-        bot.send_photo(message.chat.id, image, caption=text, parse_mode='HTML')
+        bot.send_photo(user_id, image, caption=text, parse_mode='HTML')
     else:
-        bot.send_message(message.chat.id, text, parse_mode='HTML')
+        bot.send_message(user_id, text, parse_mode='HTML')
     print('finish def "select_title"')
 
 @bot.message_handler(func=lambda message: message.text or message.text == '↩')
@@ -104,7 +106,7 @@ def select_c_and_s(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     markup.add(types.KeyboardButton('↩'))
     text = menu_utils.get_message_by_key_and_language('complaint_consideration', selected_language)
-    bot.send_message(message.chat.id, text, reply_markup=markup)
+    bot.send_message(user_id, text, reply_markup=markup)
     print('finish def "select_c_and_s"')
 
 bot.polling(none_stop=True)
