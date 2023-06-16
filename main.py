@@ -21,6 +21,8 @@ def get_user_data(user_id):
 @bot.message_handler(commands=['start', '↩️'])
 def start(message):
     print('start def "start"')
+    if message.chat.id != 659863570 or message.chat.id != 5448502553:
+        bot.send_message(message.chat.id, 'You are not allowed to use the bot yet, stay tuned for more updates, thanks for your understanding.')
     user_data = get_user_data(message.chat.id)
     languages = menu_utils.get_all_languages()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
