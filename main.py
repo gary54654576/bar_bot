@@ -21,7 +21,7 @@ def get_user_data(user_id):
 @bot.message_handler(commands=['start', '↩️'])
 def start(message):
     print('start def "start"')
-    if message.chat.id != 5448502553:
+    if message.chat.id != 5448502553 and message.chat.id != 659863570:
         bot.send_message(message.chat.id, 'You are not allowed to use the bot yet, stay tuned for more updates, thanks for your understanding. Error message:' + str(message.chat.id))
         return
     user_data = get_user_data(message.chat.id)
