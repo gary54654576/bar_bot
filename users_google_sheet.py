@@ -161,6 +161,7 @@ def set_current_state(id, current_state):
 
 def get_selected_language(id):
 
+    time.sleep(3)
     menu_utils.user_data = load_data_from_google_sheets()
     user_info = menu_utils.get_user_language_by_id(id)
     return user_info
@@ -168,6 +169,7 @@ def get_selected_language(id):
 def get_selected_action(id):
     # ищем по id выбранное действие в таблице и возвращаем его
 
+    time.sleep(3)
     menu_utils.user_data = load_data_from_google_sheets()
     user_info = menu_utils.get_user_action_by_id(id)
     return user_info
@@ -175,6 +177,7 @@ def get_selected_action(id):
 def get_selected_category(id):
     # ищем по id выбранную категорию в таблице и возвращаем её
 
+    time.sleep(3)
     menu_utils.user_data = load_data_from_google_sheets()
     user_info = menu_utils.get_user_category_by_id(id)
     return user_info
