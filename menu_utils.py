@@ -1,11 +1,13 @@
 import google_sheet_service
 import google_drive_service
-from importlib import reload  # Добавлено для перезагрузки модуля
+from importlib import reload
 import sys
+
 
 # Перезагрузка модуля google_sheet_service
 reload(sys.modules['google_sheet_service'])
 
+user_data = google_sheet_service.get_user_data()
 languages = google_sheet_service.get_languages()
 messages = google_sheet_service.get_messages()
 categories = google_sheet_service.get_menu_categories()
@@ -19,6 +21,67 @@ c_and_s = google_sheet_service.get_c_and_s()
 # -------------------------------------------------------------
 # Импортируемые функции
 # -------------------------------------------------------------
+
+def get_user_data_by_id(id):
+    global row_number
+    row_number = 1
+    for data_tuple in user_data:
+        row_number += 1
+        if data_tuple[0] == id:
+            user_info = data_tuple
+            return user_info
+    return None
+
+def get_user_language_by_id(id):
+    global row_number
+    row_number = 1
+    for data_tuple in user_data:
+        row_number += 1
+        if data_tuple[0] == id:
+            user_info = data_tuple[1]
+            return user_info
+    return None
+
+
+def get_user_action_by_id(id):
+    global row_number
+    row_number = 1
+    for data_tuple in user_data:
+        row_number += 1
+        if data_tuple[0] == id:
+            user_info = data_tuple[2]
+            return user_info
+    return None
+
+def get_user_category_by_id(id):
+    global row_number
+    row_number = 1
+    for data_tuple in user_data:
+        row_number += 1
+        if data_tuple[0] == id:
+            user_info = data_tuple[3]
+            return user_info
+    return None
+
+def get_user_current_state_by_id(id):
+    global row_number
+    row_number = 1
+    for data_tuple in user_data:
+        row_number += 1
+        if data_tuple[0] == id:
+            user_info = data_tuple[4]
+            return user_info
+    return None
+
+
+def quantity_test(arr, i):
+    try:
+        value = arr[i]
+        return 0
+    except IndexError:
+        return 1
+
+
 def get_all_category_names():
     category_names = []
     for category in category_button_names:
@@ -83,16 +146,16 @@ def get_dishes_titles_by_category_and_language(category_name, language):
     return dishes_data
 
 def get_language_indexes():
-    language_index = {}
+    language_indexes = {}
     for i, language in enumerate(languages, start=1):
-        language_index[language] = i
-    return language_index
+        language_indexes[language] = i
+    return language_indexes
 
 def get_language_index(language):
-    language_index = get_language_indexes()
-    if language not in language_index:
+    language_indexes = get_language_indexes()
+    if language not in language_indexes:
         return None
-    return language_index[language]
+    return language_indexes[language]
 
 def get_message_by_key_and_language(key, language):
     for message_tuple in messages:
@@ -226,4 +289,7 @@ def get_data_by_key_and_language(key, language):
         result_data.append(data)
 
     return result_data
+
+
+
 

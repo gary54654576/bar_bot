@@ -17,6 +17,14 @@ def get_drive_service():
         print(f"An error occurred: {error}")
         return None
 
+def get_user_data():
+    DATA_RANGE = 'user data!A2:E'
+    service = get_drive_service()
+    result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID, range=DATA_RANGE).execute()
+    user_data = result.get('values', [])
+    return user_data
+
+
 def get_languages():
     LANGUAGES_RANGE = 'languages!B2:B'
     service = get_drive_service()
@@ -79,3 +87,5 @@ def get_c_and_s():
     result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID, range=BUTTONS_RANGE).execute()
     buttons = result.get('values', [])
     return buttons[0]
+
+
